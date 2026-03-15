@@ -4,15 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Max Safrutin | Digital Dossier</title>
-
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -25,7 +22,6 @@
             }
         };
     </script>
-
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -42,7 +38,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .rotate-180 { transform: rotate(180deg); }
-
         /* Только для раздела "Опыт" */
         .experience-timeline-line {
             position: absolute;
@@ -64,7 +59,6 @@
             border-radius: 9999px;
             background: #2563eb;
         }
-
         html:not(.dark) .experience-card-light {
             box-shadow:
                 0 2px 12px rgba(0,0,0,0.04),
@@ -75,7 +69,6 @@
                 0 2px 10px rgba(0,0,0,0.03),
                 0 0 0 1px rgba(0,0,0,0.05);
         }
-
         .timeline-reveal {
             opacity: 0;
             transform: translateY(18px);
@@ -89,10 +82,8 @@
 </head>
 <body class="bg-white text-[#1d1d1f] dark:bg-black dark:text-[#f5f5f7]">
     <div id="root"></div>
-
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
-
         const ExperienceData = [
             {
                 id: 1,
@@ -107,27 +98,17 @@
                 previewFocus: "Быстро квалифицирую заявки → подбираю подходящее авто → закрываю сделку с предоплатой в CRM → довожу клиента до получения машины + активно развиваю партнёров и повторные обращения.",
                 previewResult: "В первый месяц закрою от 2 сделок и втянусь в процессы. К третьему - выше среднего. А к полугоду - один из топ-3 менеджеров по отделу — или достойно уйду на любом из этапов, если не дотяну.",
                 fullFocus: `• Буду обрабатывать входящие заявки (звонки, мессенджеры, сайт), быстро выходить на контакт и квалифицировать запрос.
-
 • Буду подбирать автомобиль под клиента: бюджет, год, пробег, комплектация, сроки и условия оплаты.
-
 • Буду презентовать условия покупки и импорта, формировать коммерческие предложения и вести переговоры.
-
 • Буду доводить клиента до результата: контракт + предоплата, корректно вести сделки в CRM.
-
 • Буду сопровождать клиента до выдачи автомобиля совместно с отделом закупа и логистики (статусы, сроки, документы).
-
 • Буду развивать партнёрские и агентские каналы (включая лизинг), усиливать рекомендации и повторные обращения.`,
                 fullTasks: `• Понимаю, что в этой роли нужен не просто человек “на телефоне”, а менеджер, который умеет быстро подхватить заявку, выстроить доверие и довести клиента до оплаты.
-
 • Даже если смотреть шире автобизнеса, моя ценность — в сильной коммуникации, нормальном темпе работы и умении закрывать сделки, а не затягивать разговоры без результата.
-
 • Я спокойно отношусь к дисциплине в работе: скорость реакции, выполнение договорённостей, порядок в CRM и контроль по клиенту для меня — базовая часть профессии.
-
 • Со своей стороны даю адекватность, включённость, ответственность и рабочий настрой на результат, а не на формальное “сопровождение”.`,
                 fullResult: `• Через 1 месяц — полностью в процессах, реакция на заявки ≤ 5–10 минут, закрываю 4–6 сделок с предоплатой, веду 100% сделок в CRM.
-
 • Через 3 месяца — стабильно закрываю 12–16+ сделок в месяц (выше среднего по отделу), растёт средний чек и формируется партнёрская база.
-
 • Через 6 месяцев — выхожу в топ-3 менеджеров компании, закрываю 20–28+ автомобилей в месяц, рекомендации и повторные клиенты дают до 35–50% потока.`,
                 recommendations: [
                     { id: 1, name: "Станислав Махин", role: "Наставник", phone: "+79179689477", review: "Знал, что не прогодаю...", fullReview: "Ваще нормальный парень, как планировал, так и сделал" },
@@ -399,15 +380,12 @@
                 ]
             }
         ];
-
         const Counter = ({ endValue, suffix = "" }) => {
             const [count, setCount] = useState(0);
-
             useEffect(() => {
                 let start = 0;
                 const duration = 1000;
                 const increment = Math.ceil(endValue / (duration / 20));
-
                 const timer = setInterval(() => {
                     start += increment;
                     if (start >= endValue) {
@@ -417,16 +395,12 @@
                         setCount(start);
                     }
                 }, 20);
-
                 return () => clearInterval(timer);
             }, [endValue]);
-
             return <span>{count}{suffix}</span>;
         };
-
         const Modal = ({ isOpen, onClose, title, children }) => {
             if (!isOpen) return null;
-
             return (
                 <div
                     className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
@@ -452,17 +426,14 @@
                 </div>
             );
         };
-
         const ExperienceCard = ({ item, onOpenFull }) => {
             const [isOpen, setIsOpen] = useState(false);
             const [activeTab, setActiveTab] = useState('preview');
             const [isVisible, setIsVisible] = useState(false);
             const cardRef = useRef(null);
-
             useEffect(() => {
                 const node = cardRef.current;
                 if (!node) return;
-
                 const observer = new IntersectionObserver(
                     (entries) => {
                         entries.forEach((entry) => {
@@ -474,17 +445,13 @@
                     },
                     { threshold: 0.12 }
                 );
-
                 observer.observe(node);
-
                 return () => observer.disconnect();
             }, []);
-
             return (
                 <div ref={cardRef} className={`relative pl-7 timeline-reveal ${isVisible ? 'visible' : ''}`}>
                     <div className="experience-timeline-line"></div>
                     <div className="experience-timeline-dot"></div>
-
                     <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] rounded-[2rem] border border-transparent dark:border-gray-800 overflow-hidden mb-4 transition-all duration-300 apple-shadow experience-card-light mx-auto">
                         <div className="flex flex-col">
                             <div
@@ -493,7 +460,6 @@
                             >
                                 <div className="space-y-1">
                                     <span className="text-blue-600 font-bold text-[10px] uppercase">{item.period}</span>
-
                                     <div className="flex items-center gap-3">
                                         <a
                                             href={item.companySite}
@@ -506,15 +472,12 @@
                                         </a>
                                         <h3 className="text-xl font-bold">{item.company}</h3>
                                     </div>
-
                                     <div className="text-sm font-semibold text-gray-600 dark:text-gray-300 mt-2">{item.role}</div>
                                 </div>
-
                                 <div className={`w-8 h-8 rounded-full bg-white dark:bg-black flex items-center justify-center transition-transform shrink-0 ${isOpen ? 'rotate-180' : ''}`}>
                                     <i className="fa-solid fa-chevron-down text-[10px]"></i>
                                 </div>
                             </div>
-
                             {isOpen && (
                                 <div className="px-6 pb-6 flex flex-col">
                                     <div className="flex gap-2 mb-6 bg-gray-200/50 dark:bg-black/50 p-1.5 rounded-2xl">
@@ -536,7 +499,6 @@
                                             </button>
                                         ))}
                                     </div>
-
                                     <div className="flex-1">
                                         {activeTab === 'preview' && (
                                             <div className="space-y-4">
@@ -544,14 +506,12 @@
                                                     <h4 className="text-[10px] font-bold uppercase text-gray-400 mb-2">Обязанности и задачи</h4>
                                                     <p className="text-sm">{item.previewFocus}</p>
                                                 </div>
-
                                                 <div className="p-4 bg-white dark:bg-black rounded-[1.5rem] border border-gray-100 dark:border-gray-800 apple-shadow experience-box-light">
                                                     <h4 className="text-[10px] font-bold uppercase text-gray-400 mb-2">Ключевые результаты</h4>
                                                     <p className="text-sm">{item.previewResult}</p>
                                                 </div>
                                             </div>
                                         )}
-
                                         {activeTab === 'detailed' && (
                                             <div className="space-y-4">
                                                 <div className="p-4 bg-white dark:bg-black rounded-[1.5rem] border border-gray-100 dark:border-gray-800 apple-shadow experience-box-light">
@@ -566,7 +526,6 @@
                                                         <span className="hover:underline underline-offset-4">{item.address}</span>
                                                     </a>
                                                 </div>
-
                                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                                     <div className="p-4 bg-white dark:bg-black rounded-[1.5rem] border border-gray-100 dark:border-gray-800 apple-shadow experience-box-light">
                                                         <h4 className="text-[10px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-2">
@@ -577,7 +536,6 @@
                                                             <span>{item.fullFocus}</span>
                                                         </div>
                                                     </div>
-
                                                     <div className="p-4 bg-white dark:bg-black rounded-[1.5rem] border border-gray-100 dark:border-gray-800 apple-shadow experience-box-light">
                                                         <h4 className="text-[10px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-2">
                                                             <i className="fa-solid fa-list-check text-[12px] text-gray-400"></i>
@@ -587,7 +545,6 @@
                                                             <span>{item.fullTasks}</span>
                                                         </div>
                                                     </div>
-
                                                     <div className="p-4 bg-white dark:bg-black rounded-[1.5rem] border border-gray-100 dark:border-gray-800 apple-shadow experience-box-light">
                                                         <h4 className="text-[10px] font-bold uppercase text-gray-400 mb-2 flex items-center gap-2">
                                                             <i className="fa-solid fa-check text-[12px] text-gray-400"></i>
@@ -600,7 +557,6 @@
                                                 </div>
                                             </div>
                                         )}
-
                                         {activeTab === 'recommendations' && (
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                                 {item.recommendations.map((rec) => (
@@ -620,9 +576,7 @@
                                                                 Позвонить
                                                             </a>
                                                         </div>
-
                                                         <p className="text-xs italic opacity-80 mb-4 line-clamp-2">«{rec.review}»</p>
-
                                                         <div className="mt-auto">
                                                             <button
                                                                 onClick={() => onOpenFull(`Отзыв от ${rec.name}`, rec.fullReview)}
@@ -643,8 +597,6 @@
                 </div>
             );
         };
-
-        // Компоненты для раздела "Навыки и Стек"
         const AccordionItem = ({ title, score, description, bullets }) => {
             const [isOpen, setIsOpen] = useState(false);
             return (
@@ -681,7 +633,6 @@
                 </div>
             );
         };
-
         const TechCard = ({ title, subtitle, tools, icon }) => (
             <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] p-5 rounded-[2rem] border border-transparent dark:border-gray-800 apple-shadow flex flex-col h-full hover:scale-[1.02] transition-transform">
                 <div className="flex items-center gap-4 mb-4">
@@ -702,7 +653,6 @@
                 </div>
             </div>
         );
-
         const StarRating = ({ label, desc, rating }) => (
             <div className="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-[#f5f5f7] dark:bg-[#1c1c1e] rounded-[1.5rem] border border-transparent dark:border-gray-800 apple-shadow gap-4">
                 <div>
@@ -710,24 +660,24 @@
                     <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">{desc}</span>
                 </div>
                 <div className="flex gap-1.5 shrink-0 bg-white dark:bg-black px-4 py-2 rounded-full border border-gray-100 dark:border-gray-900 apple-shadow">
-                    {[1, 2, 3, 4, 5].map(star => (
-                        <i key={star} className={`fa-solid fa-star text-sm ${star <= rating ? 'text-blue-500' : 'text-gray-200 dark:text-gray-800'}`}></i>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                        <i
+                            key={star}
+                            className={`fa-solid fa-star text-sm ${star <= rating ? 'text-blue-500' : 'text-gray-200 dark:text-gray-800'}`}
+                        ></i>
                     ))}
                 </div>
             </div>
         );
-
         const App = () => {
             const [activeSection, setActiveSection] = useState('profile');
             const [darkMode, setDarkMode] = useState(true);
             const [isAboutOpen, setIsAboutOpen] = useState(false);
             const [fullModal, setFullModal] = useState({ open: false, title: '', content: '' });
-
             const toggleDarkMode = () => {
                 setDarkMode((prev) => !prev);
                 document.documentElement.classList.toggle('dark');
             };
-
             return (
                 <div className="min-h-screen pb-28">
                     <nav className="fixed top-0 w-full nav-blur z-50 border-b border-gray-100 dark:border-gray-900">
@@ -742,7 +692,6 @@
                             </button>
                         </div>
                     </nav>
-
                     <main className="max-w-4xl mx-auto px-6 pt-20">
                         {activeSection === 'profile' && (
                             <div className="space-y-10 animate-fade-up">
@@ -777,7 +726,6 @@
                                         </button>
                                     </div>
                                 </header>
-
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] p-6 rounded-[1.5rem] text-center border border-transparent dark:border-gray-800">
                                         <div className="text-3xl font-bold mb-1"><Counter endValue={667} suffix="+" /></div>
@@ -792,7 +740,6 @@
                                         <div className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Млн ₽ прибыль</div>
                                     </div>
                                 </div>
-
                                 <section className="max-w-2xl mx-auto text-center space-y-6">
                                     <div className="text-lg md:text-xl leading-relaxed font-medium text-gray-800 dark:text-gray-200">
                                         <p>С 1993 года — в переговорах, с 2020 — в автомобильных. Работаю системно и гибко используя в том числе AI-инструменты для повышения конверсии продаж.</p>
@@ -806,7 +753,6 @@
                                 </section>
                             </div>
                         )}
-
                         {activeSection === 'experience' && (
                             <div className="space-y-6 animate-fade-up max-w-4xl mx-auto pb-10">
                                 <h2 className="text-2xl font-bold tracking-tight mb-6 text-center">Опыт работы</h2>
@@ -819,11 +765,8 @@
                                 ))}
                             </div>
                         )}
-
                         {activeSection === 'skills' && (
                             <div className="space-y-12 animate-fade-up max-w-4xl mx-auto pb-10">
-                                
-                                {/* 1. Профессиональное */}
                                 <div className="bg-gradient-to-br from-[#f5f5f7] to-white dark:from-[#1c1c1e] dark:to-[#121214] p-8 md:p-10 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 apple-shadow text-center relative overflow-hidden">
                                     <div className="relative z-10 space-y-4">
                                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-full text-xs font-bold uppercase tracking-widest mb-2">
@@ -842,8 +785,6 @@
                                         </p>
                                     </div>
                                 </div>
-
-                                {/* 2. Ключевые показатели */}
                                 <div className="space-y-6">
                                     <h3 className="text-xl font-bold tracking-tight px-2 flex items-center gap-3">
                                         <i className="fa-solid fa-chart-simple text-blue-600"></i> Ключевые показатели
@@ -871,8 +812,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* 3. Технические навыки */}
                                 <div className="space-y-6">
                                     <h3 className="text-xl font-bold tracking-tight px-2 flex items-center gap-3">
                                         <i className="fa-solid fa-laptop-code text-blue-600"></i> Технический стек
@@ -890,8 +829,6 @@
                                         <TechCard title="Управление задачами" subtitle="контроль сроков" tools={["Notion", "Trello", "Todoist", "Obsidian"]} icon="fa-list-check" />
                                     </div>
                                 </div>
-
-                                {/* 4. Интеллектуальные компетенции (Аккордеоны) */}
                                 <div className="space-y-6">
                                     <div className="px-2">
                                         <h3 className="text-xl font-bold tracking-tight mb-2 flex items-center gap-3">
@@ -920,8 +857,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* 5. Профессиональные Качества */}
                                 <div className="space-y-6">
                                     <h3 className="text-xl font-bold tracking-tight px-2 flex items-center gap-3">
                                         <i className="fa-regular fa-star text-blue-600"></i> Профессиональные качества
@@ -937,30 +872,187 @@
                                         <StarRating label="Инициативность" desc="не жду указаний, предлагаю решения" rating={2} />
                                     </div>
                                 </div>
-
                             </div>
                         )}
-
                         {activeSection === 'personal' && (
                             <div className="space-y-6 animate-fade-up max-w-3xl mx-auto">
                                 <h2 className="text-2xl font-bold tracking-tight mb-4 text-center">Личное и Увлечения</h2>
+
+                                {/* Девиз и любимая цитата — в стиле уже существующего тёмного блока */}
                                 <div className="bg-[#1d1d1f] text-white p-8 rounded-[2rem]">
-                                    <h3 className="text-xl font-bold mb-4">Девиз</h3>
-                                    <p className="text-lg opacity-70 italic mb-4">«Система всегда побеждает хаос».</p>
-                                    <p className="text-base leading-relaxed opacity-90 font-light">Увлекаюсь яхтингом и марафонским бегом. Считаю, что дисциплина в спорте напрямую переносится в бизнес.</p>
+                                    <h3 className="text-xl font-bold mb-4">🧭 Девиз по жизни</h3>
+                                    <p className="text-lg opacity-70 italic mb-6">«Завтра ты должен быть лучше, чем сегодня!»</p>
+                                    <h3 className="text-xl font-bold mb-4">💬 Любимая цитата</h3>
+                                    <p className="text-base leading-relaxed opacity-90 font-light">«Самая главная формула успеха — знать, как общаться с людьми».</p>
+                                    <p className="text-sm opacity-70 mt-2">- Теодор Рузвельт</p>
                                 </div>
+
+                                {/* Образование — единый Apple-стильный блок */}
                                 <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] p-8 rounded-[2rem] border border-transparent dark:border-gray-800">
-                                    <h3 className="text-xl font-bold mb-4">Путешествия</h3>
-                                    <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">35 стран, от Исландии до Японии. Люблю изучать локальные бизнес-культуры и находить новые подходы в коммуникациях.</p>
-                                    <div className="text-4xl mt-6 flex gap-4 text-blue-600">
-                                        <i className="fa-solid fa-earth-americas"></i>
-                                        <i className="fa-solid fa-mountain"></i>
-                                        <i className="fa-solid fa-car"></i>
+                                    <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
+                                        <i className="fa-solid fa-graduation-cap text-blue-600"></i> 📚 Образование
+                                    </h3>
+                                    <div className="space-y-8">
+                                        {/* Основное образование */}
+                                        <div>
+                                            <div className="flex items-center gap-3 text-blue-600 mb-4">
+                                                <i className="fa-solid fa-book text-xl"></i>
+                                                <span className="font-bold text-base">🧩 Основное образование</span>
+                                            </div>
+                                            <div className="pl-8 border-l border-gray-300 dark:border-gray-700 space-y-6">
+                                                <div>
+                                                    <div className="font-semibold">МОУ СОШ №38</div>
+                                                    <div className="text-sm text-gray-500 dark:text-gray-400">1998 г. – 2008 г.</div>
+                                                    <div className="text-sm mt-2">Среднее общее образование, 11 классов.</div>
+                                                </div>
+                                                <div>
+                                                    <div className="font-semibold">Поволжская государственная социально-гуманитарная академия (ПГСГА)</div>
+                                                    <div className="text-sm text-gray-500 dark:text-gray-400">2008 г. – 2013 г.</div>
+                                                    <div className="text-sm mt-2">Естественно-географический факультет — специалист очной формы обучения.</div>
+                                                    <div className="text-sm mt-1">Специальность: география с дополнительной специальностью биология.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Дополнительное образование — список */}
+                                        <div>
+                                            <div className="flex items-center gap-3 text-blue-600 mb-4">
+                                                <i className="fa-solid fa-certificate text-xl"></i>
+                                                <span className="font-bold text-base">🧩 Доп. образование</span>
+                                            </div>
+                                            <ul className="space-y-4 pl-8 border-l border-gray-300 dark:border-gray-700 text-sm">
+                                                <li className="flex items-start gap-3">
+                                                    <i className="fa-solid fa-check text-blue-600 mt-1"></i>
+                                                    <div>
+                                                        <span className="font-medium">ФФАИСАСО — Фитнес-инструктор</span><br />
+                                                        <span className="text-xs text-gray-500">01–02 / 2011</span>
+                                                    </div>
+                                                </li>
+                                                <li className="flex items-start gap-3">
+                                                    <i className="fa-solid fa-check text-blue-600 mt-1"></i>
+                                                    <div>
+                                                        <span className="font-medium">Водительское удостоверение категории B</span><br />
+                                                        <span className="text-xs text-gray-500">с 2012 года</span>
+                                                    </div>
+                                                </li>
+                                                <li className="flex items-start gap-3">
+                                                    <i className="fa-solid fa-check text-blue-600 mt-1"></i>
+                                                    <div>
+                                                        <span className="font-medium">Санкт-Петербургская школа телевидения — Курс ведущего мероприятий</span><br />
+                                                        <span className="text-xs text-gray-500">02–04 / 2014</span>
+                                                    </div>
+                                                </li>
+                                                <li className="flex items-start gap-3">
+                                                    <i className="fa-solid fa-check text-blue-600 mt-1"></i>
+                                                    <div>
+                                                        <span className="font-medium">Насретдинов Р.К., ИП — Управление бизнес-аккаунтами</span><br />
+                                                        <span className="text-xs text-gray-500">12 / 2021 – 03 / 2022</span>
+                                                    </div>
+                                                </li>
+                                                <li className="flex items-start gap-3">
+                                                    <i className="fa-solid fa-check text-blue-600 mt-1"></i>
+                                                    <div>
+                                                        <span className="font-medium">Бойлерная, ООО — Инструменты продаж</span><br />
+                                                        <span className="text-xs text-gray-500">03 – 05 / 2022</span>
+                                                    </div>
+                                                </li>
+                                                <li className="flex items-start gap-3">
+                                                    <i className="fa-solid fa-check text-blue-600 mt-1"></i>
+                                                    <div>
+                                                        <span className="font-medium">АВТОВАЗ, АО — Сертификация по стандартам МОП Lada</span><br />
+                                                        <span className="text-xs text-gray-500">07 / 2023 – 06 / 2024</span>
+                                                    </div>
+                                                </li>
+                                                <li className="flex items-start gap-3">
+                                                    <i className="fa-solid fa-check text-blue-600 mt-1"></i>
+                                                    <div>
+                                                        <span className="font-medium">АВТОВАЗ, АО — Сертификация по стандартам КМП Lada</span><br />
+                                                        <span className="text-xs text-gray-500">07 / 2024</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
+                                </div>
+
+                                {/* Языки — в стиле StarRating (как в навыках) */}
+                                <div className="space-y-6">
+                                    <h3 className="text-xl font-bold tracking-tight px-2 flex items-center gap-3">
+                                        <i className="fa-solid fa-language text-blue-600"></i> 🌐 Языки
+                                    </h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <StarRating label="Русский" desc="родной" rating={4} />
+                                        <StarRating label="Английский" desc="уровень 3 класса" rating={2} />
+                                        <StarRating label="Французский" desc="просто нравится" rating={0} />
+                                    </div>
+                                </div>
+
+                                {/* Личные качества — тоже StarRating */}
+                                <div className="space-y-6">
+                                    <h3 className="text-xl font-bold tracking-tight px-2 flex items-center gap-3">
+                                        <i className="fa-solid fa-heart text-blue-600"></i> 🤝 Личные качества
+                                    </h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <StarRating label="Эмоциональная устойчивость и уравновешенность" desc="" rating={2} />
+                                        <StarRating label="Харизматичный стиль общения с клиентами" desc="" rating={4} />
+                                        <StarRating label="Высокая личная дисциплина и самоорганизация" desc="" rating={3} />
+                                        <StarRating label="Доброжелательность и умение выстраивать доверие" desc="" rating={4} />
+                                    </div>
+                                </div>
+
+                                {/* Доп. информация (самое главное) */}
+                                <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] p-8 rounded-[2rem] border border-transparent dark:border-gray-800">
+                                    <h3 className="text-xl font-bold mb-6">📎 Доп. информация</h3>
+                                    <div className="font-bold mb-4 text-blue-600">⭐ Самое главное</div>
+                                    <div className="space-y-4 text-sm">
+                                        <div className="flex gap-3"><span className="text-blue-600 w-5">▶</span><div>Родился <span className="font-semibold">1990</span></div></div>
+                                        <div className="flex gap-3"><span className="text-blue-600 w-5">💍</span><div>Женился <span className="font-semibold">09 / 2013</span></div></div>
+                                        <div className="flex gap-3"><span className="text-blue-600 w-5">👶</span><div>Родился 1-ый сын <span className="font-semibold">2018</span></div></div>
+                                        <div className="flex gap-3"><span className="text-blue-600 w-5">👶</span><div>Родился 2-ой сын <span className="font-semibold">2021</span></div></div>
+                                        <div className="flex gap-3"><span className="text-blue-600 w-5">👶</span><div>Родилась дочь <span className="font-semibold">2025</span></div></div>
+                                        <div className="flex gap-3"><span className="text-blue-600 w-5">🏡</span><div>В планах — купить / построить дом.</div></div>
+                                    </div>
+                                </div>
+
+                                {/* Путешествия */}
+                                <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] p-8 rounded-[2rem] border border-transparent dark:border-gray-800">
+                                    <h3 className="text-xl font-bold mb-6">🌍 Мои путешествия</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+                                        <div className="flex gap-3"><i className="fa-solid fa-city text-blue-600 mt-1"></i><div><span className="font-semibold">Москва</span><br />пол года проживания</div></div>
+                                        <div className="flex gap-3"><i className="fa-solid fa-plane text-blue-600 mt-1"></i><div><span className="font-semibold">Прага</span><br />серебро на чемпионате Европы</div></div>
+                                        <div className="flex gap-3"><i className="fa-solid fa-plane text-blue-600 mt-1"></i><div><span className="font-semibold">Шарджа</span><br />отпуск в ОАЭ</div></div>
+                                        <div className="flex gap-3"><i className="fa-solid fa-plane text-blue-600 mt-1"></i><div><span className="font-semibold">Париж</span><br />с командой в Диснейленде</div></div>
+                                    </div>
+                                </div>
+
+                                {/* Увлечения — в стиле тегов (как в TechCard) */}
+                                <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] p-8 rounded-[2rem] border border-transparent dark:border-gray-800">
+                                    <h3 className="text-xl font-bold mb-6">🎨 Увлечения</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["IT технологии","Умный дом","Контент к саморазвитию","Графический дизайн","Ведение мероприятий","Уличные танцы","Джазовая музыка"].map((item,i) => (
+                                            <span key={i} className="bg-white dark:bg-black px-4 py-2 rounded-2xl text-xs font-medium border border-gray-100 dark:border-gray-900 apple-shadow">
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Личные достижения */}
+                                <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] p-8 rounded-[2rem] border border-transparent dark:border-gray-800">
+                                    <h3 className="text-xl font-bold mb-6">🏆 Личные достижения</h3>
+                                    <ul className="space-y-4 text-sm">
+                                        <li className="flex items-start gap-3"><i className="fa-solid fa-trophy text-blue-600 mt-1"></i><span>Продано более 667+ автомобилей за всё время</span></li>
+                                        <li className="flex items-start gap-3"><i className="fa-solid fa-trophy text-blue-600 mt-1"></i><span>587+ довольных заказчиков проведёнными и организованными мероприятиями</span></li>
+                                        <li className="flex items-start gap-3"><i className="fa-solid fa-trophy text-blue-600 mt-1"></i><span>Лауреат вузовских и областных студенческих весен в номинации хореография (2009–2013)</span></li>
+                                        <li className="flex items-start gap-3"><i className="fa-solid fa-trophy text-blue-600 mt-1"></i><span>Победитель олимпиады по психологии среди факультетов ВУЗа</span></li>
+                                        <li className="flex items-start gap-3"><i className="fa-solid fa-trophy text-blue-600 mt-1"></i><span>Участник сборной СГАУ, команды «Just Black», хип-хоп аэробика — серебряные призёры Европы</span></li>
+                                        <li className="flex items-start gap-3"><i className="fa-solid fa-trophy text-blue-600 mt-1"></i><span>Участник сборной ПГСГА, команды «Sky», хип-хоп аэробика — серебряные призёры областных соревнований, финалисты ПФО</span></li>
+                                        <li className="flex items-start gap-3"><i className="fa-solid fa-trophy text-blue-600 mt-1"></i><span>Судья областных соревнований по фитнес-аэробике (хип-хоп аэробика)</span></li>
+                                        <li className="flex items-start gap-3"><i className="fa-solid fa-trophy text-blue-600 mt-1"></i><span>Организация, проведение и участие в мероприятиях школьного, районного, городского и развлекательного уровня</span></li>
+                                    </ul>
                                 </div>
                             </div>
                         )}
-
                         {activeSection === 'contacts' && (
                             <div className="text-center py-6 animate-fade-up">
                                 <h2 className="text-3xl font-extrabold tracking-tight mb-2">Готовы к новому опыту?</h2>
@@ -998,7 +1090,6 @@
                             </div>
                         )}
                     </main>
-
                     <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] max-w-lg nav-blur rounded-full apple-shadow border border-gray-200 dark:border-gray-800 z-50">
                         <div className="flex justify-around items-center h-16 px-2">
                             {[
@@ -1019,13 +1110,11 @@
                             ))}
                         </div>
                     </nav>
-
                     <Modal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} title="О специалисте">
                         <div className="space-y-4 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
                             <p>Более 12 лет в управлении продажами. Решения принимаю на основе аналитики и цифр. Архитектуру процессов веду к прогнозируемым и масштабируемым результатам. Увеличиваю прибыль компании через доверие клиента и решение его задачи, то есть конвертирую запрос в сделку.</p>
                             <p className="pt-2">Родился Козерогом в год Лошади 30 декабря 1990 года, женат, трое детей, в планах — купить / построить дом</p>
                         </div>
-
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-6">
                             {[
                                 { val: 1340, icon: "fa-car", txt: "Опыт продаж в автобизнесе.", suffix: " дн." },
@@ -1044,11 +1133,9 @@
                                 </div>
                             ))}
                         </div>
-
                         <p className="text-xs text-gray-500 dark:text-gray-400 border-l-2 border-blue-500 pl-4 italic leading-relaxed">
                             Убеждён, что эффективная работа строится не только на договорах и регламентах, но прежде всего на живых человеческих отношениях и взаимном доверии.
                         </p>
-
                         <button
                             onClick={() => {
                                 setIsAboutOpen(false);
@@ -1059,7 +1146,6 @@
                             Подробнее про навыки
                         </button>
                     </Modal>
-
                     <Modal
                         isOpen={fullModal.open}
                         onClose={() => setFullModal({ ...fullModal, open: false })}
@@ -1070,7 +1156,6 @@
                 </div>
             );
         };
-
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
